@@ -1,0 +1,31 @@
+# Ignore Fortran build artifacts.
+
+*.dSYM/
+*.o
+*.exe
+*.mod
+*.cbp
+
+
+# Ignore CMake artifacts.
+
+CMakeCache.txt
+cmake_install.cmake
+CMakeFiles/
+
+
+# Ignore Vagrant runtime files.
+
+.vagrant/
+
+
+# Ignore settings for various IDEs.
+
+.idea/
+.project/
+nbproject/
+
+
+# Ignore OS metadata files.
+
+.DS_Store
