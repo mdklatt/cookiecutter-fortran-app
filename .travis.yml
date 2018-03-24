@@ -1,0 +1,29 @@
+## Travis CI configuration for the cookiecutter-python-app project template.
+##
+##   <https://travis-ci.org/mdklatt/cookiecutter-python-app>
+##
+language: cpp
+
+compiler:
+  - gcc
+
+branches:
+  only:
+    - master
+    - dev
+
+sudo: false
+dist: trusty 
+
+addons:
+  apt:  # lint.travis-ci.org doesn't recognize this yet, but it's valid
+    packages:
+      - gfortran
+
+before_script:
+  # Install Cookiecutter. Because this is a C++ project Travis does not create
+  # a Python virtualenv, so pip needs to install locally.
+  - pip install --requirement=requirements.txt --user
+  
+script:
+  - python tests/test_template.py
