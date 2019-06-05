@@ -1,17 +1,27 @@
 ## CMake build file for the {{ cookiecutter.app_name }} application.
 ##
-## Compiled binaries will be written to build/${CMAKE_BUILD_TYPE}.
-##
-cmake_minimum_required(VERSION 2.8.12)
-
-project({{ cookiecutter.app_name }})
-
-set(PROJECT_BINARY ${PROJECT_NAME})
-
-# Set compiler flags (valid for gcc-gfortran).
+cmake_minimum_required(VERSION 3.14)
+project({{ cookiecutter.app_name }}
+    VERSION {{ cookiecutter.project_version }}
+    LANGUAGES Fortran
+)
 
 enable_language(Fortran)
-set(CMAKE_Fortran_FLAGS "-std=f2003 -fimplicit-none -Wall -pedantic")
-set(CMAKE_Fortran_FLAGS_DEBUG "-fcheck=bounds")
 
-add_executable(${PROJECT_BINARY} src/main.f90)
+set(EXECUTABLE {{ cookiecutter.app_name }})
+
+add_executable(${EXECUTABLE})
+
+target_sources(${EXECUTABLE}
+PRIVATE
+    src/main.f90
+)
+
+target_compile_options(${EXECUTABLE}
+PRIVATE
+    -Wall
+    -std=f2003
+    -fimplicit-none
+    $<$<Fortran_COMPILER_ID:GNU>:-pedantic>
+    $<$<CONFIG:Debug>:-fcheck=bounds>
+)
