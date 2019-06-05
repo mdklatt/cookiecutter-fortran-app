@@ -1,7 +1,8 @@
 # Ignore Fortran build artifacts.
 
-*.dSYM/
+*.dSYM
 *.o
+*.a
 *.exe
 *.mod
 *.cbp
@@ -19,13 +20,16 @@ CMakeFiles/
 .vagrant/
 
 
-# Ignore settings for various IDEs.
+# Ignore IDE settings.
 
 .idea/
 .project/
+.vscode/
 nbproject/
+*.code-workspace
 
 
 # Ignore OS metadata files.
 
 .DS_Store
+Thumbs.db
